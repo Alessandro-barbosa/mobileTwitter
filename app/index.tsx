@@ -1,80 +1,18 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import axios from 'axios';
+import * as React from 'react';
+import {createStackNavigator } from '@react-navigation/stack'
+import LoginScreen from './login';
+const Stack = createStackNavigator();
 
-const LoginScreen = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  const handleLogin = async () => {
-      Alert.alert('Atenção', 'tome', [{ text: "botão entrou"}]);
-      const response = axios.get('http://localhost:3000/posts', {
-      })
-      Alert.alert('Requisição', 'Dados', [{ text: (await response).data}]);
-      console.log((await response).data)
-      }      
-
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      
-      <TextInput
-        style={styles.input}
-        placeholder="Usuário"
-        value={username}
-        onChangeText={setUsername}
-      />
-      
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
-      
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Entrar</Text>
-      </TouchableOpacity>
-    </View>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="LoginPage"
+          component={LoginScreen}
+          options={{title: 'Login'}}
+        />
+      </Stack.Navigator>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-    backgroundColor: '#f5f5f5',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 30,
-  },
-  input: {
-    height: 50,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    marginBottom: 20,
-    backgroundColor: '#fff',
-  },
-  button: {
-    height: 50,
-    backgroundColor: '#4CAF50',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
-
-export default LoginScreen;
+export default App;
