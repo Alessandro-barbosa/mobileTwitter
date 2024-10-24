@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import axios from 'axios';
 
 const LoginScreen = () => {
@@ -15,7 +14,6 @@ const LoginScreen = () => {
     console.log((await response).data)
   }
 
-  function LoginScreen({navigation}){}
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
@@ -35,7 +33,7 @@ const LoginScreen = () => {
         onChangeText={setPassword}
       />
       
-      <TouchableOpacity style={styles.button} onPress={() => }>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
     </View>
