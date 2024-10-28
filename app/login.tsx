@@ -3,15 +3,16 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'reac
 import axios from 'axios';
 
 const LoginScreen = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setSenha] = useState('');
 
   const handleLogin = async () => {    
-    const response = axios.get('http://localhost:3000/posts', {
-    })
-    Alert.alert('Requisição', 'Dados', [{ text: (await response).data}]);
-    console.log((await response).data)
+    const response = await axios.post('http://localhost:3000/auth/signin', {
+      email,
+      password,    
+    });
+    console.log(email, password)
+    console.log(response.data)
   }
 
   return (
@@ -20,9 +21,9 @@ const LoginScreen = () => {
       
       <TextInput
         style={styles.input}
-        placeholder="Usuário"
-        value={username}
-        onChangeText={setUsername}
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
       />
       
       <TextInput
@@ -30,7 +31,7 @@ const LoginScreen = () => {
         placeholder="Senha"
         secureTextEntry
         value={password}
-        onChangeText={setPassword}
+        onChangeText={setSenha}
       />
       
       <TouchableOpacity style={styles.button} onPress={handleLogin}>

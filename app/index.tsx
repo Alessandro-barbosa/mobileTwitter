@@ -7,9 +7,8 @@ const App = () => {
   return (
       <Stack.Navigator>
         <Stack.Screen
-          name="LoginPage"
+          name="Login"
           component={LoginScreen}
-          options={{title: 'Login'}}
         />
       </Stack.Navigator>
   );
