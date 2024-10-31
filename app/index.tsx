@@ -1,17 +1,12 @@
-import * as React from 'react';
-import {createStackNavigator } from '@react-navigation/stack'
-import LoginScreen from './login';
-const Stack = createStackNavigator();
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { LoginStackScreen } from "./Navigation/LoginStack";
+import TabNavigator from "./Navigation/TabNavigator";
 
-const App = () => {
+const Tab = createBottomTabNavigator();
+
+export default function App() {
   return (
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-        />
-      </Stack.Navigator>
+    <TabNavigator></TabNavigator>
   );
-};
-
-export default App;
+}
